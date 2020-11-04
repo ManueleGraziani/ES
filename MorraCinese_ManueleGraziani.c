@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include <errno.h>
-#include <sys/random.h>
-
 
 #define Sasso   0
 #define Carta   1
@@ -158,12 +157,14 @@ void Play(unsigned short int Shots_Number){
         Scores.PCWins = 0;
 
         system("clear");
+	
+
+	t = time(NULL);
+	srand(t);
 
         for(int i = 0; i < Shots_Number; i++){
 
 
-                getrandom(&t,sizeof(int),GRND_RANDOM);
-                srand(t);
 
                 do{
 
@@ -227,6 +228,7 @@ void Play(unsigned short int Shots_Number){
 
         }
 
+	free(array);	
 
         if(Scores.UserWins > Scores.PCWins)
                 printf("***HAI VINTO***\n");
